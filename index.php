@@ -1,19 +1,15 @@
 <?php
-	if (isset($_GET['alias']))
+	if (!isset($_GET['alias']))
 	{
-		$alias = $_GET['alias'];
-		
-		if (file_exists("urls/$alias.txt"))
-		{
-			header("Location: " . file_get_contents("urls/$alias.txt"));
-		}
-		else
-		{
-			echo "URL /$alias not found!";
-		}
+		die("Welcome to the URL shortener!");
 	}
-	else
+
+	$alias = $_GET['alias'];
+
+	if (!file_exists("urls/$alias.txt"))
 	{
-		echo "Welcome to the URL shortener!";
+		die("URL /$alias not found!");
 	}
+
+	header("Location: " . file_get_contents("urls/$alias.txt"));
 ?>
