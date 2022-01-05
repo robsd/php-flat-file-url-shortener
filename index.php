@@ -4,7 +4,7 @@
 		die("Welcome to the URL shortener!");
 	}
 
-	$alias = $_GET['alias'];
+	$alias = htmlspecialchars($_GET['alias']);
 
 	if (!file_exists("urls/$alias.txt"))
 	{
