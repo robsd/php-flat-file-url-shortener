@@ -1,15 +1,11 @@
 <?php
-	if (!isset($_GET['alias']))
+	if (!isset($_GET['alias']) || !file_exists("urls/$alias.txt"))
 	{
-		die("Welcome to the URL shortener!");
+		http_response_code(404);
+		die();
 	}
 
 	$alias = htmlspecialchars($_GET['alias']);
-
-	if (!file_exists("urls/$alias.txt"))
-	{
-		die("URL /$alias not found!");
-	}
 
 	header("Location: " . file_get_contents("urls/$alias.txt"));
 ?>
